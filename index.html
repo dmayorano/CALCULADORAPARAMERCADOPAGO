@@ -1,0 +1,362 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>XSELL CALCULADORA</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-SgOJa3DmI69IUzQ2PVdRZhwQ+dy64/BUtbMJw1MZ8t5HZApcHrRKUc4W0kG879m7" crossorigin="anonymous">
+  <style>
+    body {
+      background-color: #ffffff;
+    }
+
+    .modal {
+      transition: all 0.s ease-in-out;
+      transform: scale(0.8);
+      opacity: 0;
+      display: none;
+    }
+
+    .modal.show {
+      transform: scale(1);
+      opacity: 1;
+      display: block;
+    }
+  </style>
+</head>
+<body>
+  <div class="modal fade" id="resultadoModal" tabindex="-1" aria-labelledby="resultadoModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="resultadoModalLabel">Resultados</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <p id="resultadoModalBody"></p>
+          <p id="promedioModalBody"></p>
+          <p id="tierModalBody"></p>
+          <p id="montoBrutoModalBody"></p>
+          <p id="montoNetoModalBody"></p>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <nav class="navbar navbar-expand-lg navbar-dark p-2 flex-fill" style="background-color: #03577b;">
+    <div class="container-fluid">
+      <a class="navbar-brand d-flex align-items-center" href="/">
+        <img src="logo_de_una_x_azul_que_sea.jpeg" alt="Logo" style="width: 30px; height: 30px; margin-right: 10px;">
+        Xsellneta
+      </a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse justify-content-center" id="navbarNavDropdown">
+        <ul class="navbar-nav">
+          <li class="nav-item">
+            <a class="nav-link active" aria-current="page" href="#">Calculadora</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#como-funciona">¿Como funciona?</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#contacto">Contacto</a>
+          </li>
+          
+        </ul>
+      </div>
+    </div>
+  </nav>
+  <div class="container border rounded p-4 shadow-sm mt-5 position-relative" style="min-height: 400px; background-color: #00ccff">
+    <div class="row">
+      <div class="col-lg-6">
+        <h2 type="title" class="calm-landings-library-section-title__title text-center mb-4" style="color:#fff">¿Pero... Cuanto voy a cobrar?</h2>
+        <form id="formulario" class="row g-3 p-2 mt-2" style="width: 100%; margin: 0 auto;">
+          <div class="col-md-4 p-2 flex-fill text-center">
+            <label for="cartera1" class="form-label fw-bold" style="color: #fff;">Cartera 1</label>
+            <input type="number" class="form-control text-center" id="cartera1" value="" required>
+          </div>
+          <div class="col-md-4 p-2 flex-fill text-center">
+            <label for="cartera2" class="form-label fw-bold" style="color: #fff;">Cartera 2</label>
+            <input type="number" class="form-control text-center" id="cartera2" value="" required>
+          </div>
+          <div class="col-md-4 p-2 flex-fill text-center">
+            <label for="cartera3" class="form-label fw-bold" style="color: #fff;">Cartera 3</label>
+            <input type="number" class="form-control text-center" id="cartera3" value="" required>
+          </div>
+          <div class="col-md-4 p-2 flex-fill text-center">
+            <label for="adelanto" class="form-label fw-bold" style="color: #fff;">Adelanto</label>
+            <input type="number" class="form-control text-center" id="adelanto" value="0" required>
+          </div>
+          <div class="col-12 text-center">
+            <button type="button" class="btn btn-primary" onclick="calcular()">Calcular</button>
+          </div>
+        </form>
+      </div>
+      <div class="col-lg-6">
+        <h2 type="title" class="calm-landings-library-section-title__title text-center mb-4" style="color:#fff">Cotización en vivo</h2>
+        <div class="d-flex justify-content-center">
+          <iframe style="width:80%;height:250px;border-radius:30px;box-shadow:5px 10px 4px rgb(0 0 0 / 355%);border:1px solid #bcbcbc" src="https://dolarhoy.com/i/cotizaciones/dolar-bancos-y-casas-de-cambio" frameborder="0"></iframe>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="modal fade" id="resultadoModal" tabindex="-1" aria-labelledby="resultadoModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="resultadoModalLabel">Resultados</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <p id="resultadoModalBody"></p>
+          <p id="promedioModalBody"></p>
+          <p id="tierModalBody"></p>
+          <p id="montoBrutoModalBody"></p>
+          <p id="montoNetoModalBody"></p>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <h2 type="title" class="calm-landings-library-section-title__title text-center mt-5 mb-5" style="color:#000" id="como-funciona">¿Como funciona?</h2>
+<div class="row">
+  <div class="col-lg-4 col-md-4 col-sm-12 mb-4">
+    <div class="card h-100 border rounded-3" style="background-color:#0A0080">
+      <div class="card-body d-flex flex-column align-items-center">
+        <div aria-hidden="true" class="mb-3">
+          <svg width="48" height="48" viewBox="0 0 32 32" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+          
+          </svg>
+        </div>
+        <h5 class="card-title text-white text-center">Paso 1: Ingresa tus 3 carteras y si es que solicitaste un adelanto</h5>
+        <p class="card-text text-white text-center">La calculadora te proporcionará un desglose detallado de tus ingresos, incluyendo:
+          Monto a cobrar bruto,
+          monto a cobrar neto,
+          retenciones de ganancias si corresponde,
+          cargas sociales,
+          monto neto final después de descontar el adelanto.</p>
+      </div>
+    </div>
+  </div>
+  <div class="col-lg-4 col-md-4 col-sm-12 mb-4">
+    <div class="card h-100 border rounded-3" style="background-color:#0A0080">
+      <div class="card-body d-flex flex-column align-items-center">
+        <div aria-hidden="true" class="mb-3">
+          <svg width="48" height="48" viewBox="0 0 32 32" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+            <!-- Icono SVG -->
+          </svg>
+        </div>
+        <h5 class="card-title text-white text-center">Paso 2: Aprieta calcular</h5>
+        <p class="card-text text-white text-center">Se va a desplegar toda la informacion anterior y podras copiarlo.</p>
+      </div>
+    </div>
+  </div>
+  <div class="col-lg-4 col-md-4 col-sm-12 mb-4">
+    <div class="card h-100 border rounded-3" style="background-color:#0A0080">
+      <div class="card-body d-flex flex-column align-items-center">
+        <div aria-hidden="true" class="mb-3" style="height: 48px;"></div>
+        <h5 class="card-title text-white text-center">Paso 3: Converti tu sueldo a dolares</h5>
+        <p class="card-text text-white text-center">Si necesitas la cotizacion del dolar oficial, se actualiza en el momento.</p>
+      </div>
+    </div>
+  </div>
+</div>
+  </div>
+  <footer class="bg-dark text-white mt-5 p-4" id="contacto">
+    <div class="d-flex justify-content-center align-items-center">
+      <p class="me-3">&copy; Damian Mayorano</p>
+      <p class="me-3">Teléfono: 1124070486</p>
+      <p class="me-3">Correo: <a href="mailto:damianmayorano@gmail.com" class="text-white">damianmayorano@gmail.com</a></p>
+      <p class="me-3">LinkedIn: <a href="https://www.linkedin.com/in/damian-mayorano-45004219b/" class="text-white">Mi Perfil</a></p>
+    </div>
+  </footer>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/js/bootstrap.bundle.min.js" integrity="sha384-HwwvtgBNo3bZJJLYd8z8O7zpdJ1a6vzcg8Z624ogAKA9eKE4yQM6Af3zH/AbebHa" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/js/bootstrap.bundle.min.js" integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBNt8Ev/8AutEk+9/d39XXFA9ArgA6D1P/yiqUrQ=" crossorigin="anonymous"></script>
+  <script>
+function calcular(){
+  console.log("Calculando...");
+  let cartera1 = parseFloat(document.getElementById("cartera1").value);
+  let cartera2 = parseFloat(document.getElementById("cartera2").value);
+  let cartera3 = parseFloat(document.getElementById("cartera3").value);
+  let resultado = cartera1 + cartera2 + cartera3;
+  let promedio = resultado / 3;
+
+  let tier = determinarTier(promedio);
+  let montoBruto = calcularMonto(cartera1, cartera2, cartera3, promedio);
+  let montoAdelanto = parseFloat(document.getElementById("adelanto").value);
+  let resultadoSueldoNeto = calcularSueldoNeto(montoBruto);
+  let montoNetoFinal = resultadoSueldoNeto.sueldoNeto - montoAdelanto;
+
+  document.getElementById("resultadoModalBody").innerHTML = "La suma de tus carteras es: " + resultado.toFixed(2);
+  document.getElementById("promedioModalBody").innerHTML = "El promedio de tus carteras es: " + promedio.toFixed(2);
+  document.getElementById("tierModalBody").innerHTML = "Tier: " + (montoBruto === 1000000 ? "Bronce" : tier);
+  document.getElementById("montoBrutoModalBody").innerHTML = "El monto a cobrar bruto es: $" + montoBruto.toLocaleString("es-AR");
+  document.getElementById("montoNetoModalBody").innerHTML = `
+    El monto a cobrar neto es: $${resultadoSueldoNeto.sueldoNeto.toLocaleString("es-AR")}
+    Retención de IIBB: $${resultadoSueldoNeto.retencionGanancias.toLocaleString("es-AR")} (${((resultadoSueldoNeto.retencionGanancias / montoBruto) * 100).toFixed(2)}%)
+    Retención de cargas sociales: $${resultadoSueldoNeto.retencionIG.toLocaleString("es-AR")} (17%)
+    Adelanto: $${montoAdelanto.toLocaleString("es-AR")}
+    Monto neto final: $${montoNetoFinal.toLocaleString("es-AR")}
+  `;
+  var modal = document.getElementById('resultadoModal');
+      modal.classList.add('show');
+      document.body.classList.add('modal-open');
+
+      var closeButtons = document.querySelectorAll('#resultadoModal .btn-close, #resultadoModal .btn-secondary');
+      closeButtons.forEach(function(button) {
+        button.addEventListener('click', function() {
+          modal.classList.remove('show');
+          document.body.classList.remove('modal-open');
+        });
+      });
+    }
+    function determinarTier(promedio){
+      if (promedio < 80 || promedio < 100 && promedio >= 80) {
+        return "Bronce";
+      } else if (promedio >= 125 && promedio <= 200) {
+        return "Plata";
+      } else if (promedio > 200) {
+        return "Oro";
+      } else if (promedio < 100){
+        return "Bronce";
+      } else {
+        return "Bronce";
+      }
+    }
+
+    function calcularMonto(cartera1, cartera2, cartera3, promedio){
+      if (cartera1 < 100 || cartera2 < 100 || cartera3 < 100) {
+        return 1000000;
+      } else {
+        if (promedio >= 80 && promedio < 125) {
+          return calcularTierBronce(promedio);
+        } else if (promedio >= 125 && promedio <= 200) {
+          return calcularTierPlata(promedio);
+        } else if (promedio > 200) {
+          return calcularTierOro(promedio);
+        }
+      }
+    }
+
+    function calcularTierBronce(promedio){
+      if (promedio < 80) {
+        return 1000000;
+      } else if (promedio < 90) {
+        return 1134400;
+      } else if (promedio < 100) {
+        return 1264000;
+      } else if (promedio < 120) {
+        return 1420000;
+      } else if (promedio < 170) {
+        return 1554400;
+      } else if (promedio < 220) {
+        return 1856800;
+      } else if (promedio < 270) {
+        return 2201200;
+      } else {
+        return 3016000;
+      }
+    }
+
+    function calcularTierPlata(promedio){
+      if (promedio < 120) {
+        return 1520400;
+      } else if (promedio < 170) {
+        return 1665280;
+      } else if (promedio < 220) {
+        return 2028160;
+      } else if (promedio < 270) {
+        return 2441440;
+      } else {
+        return 3419200;
+      }
+    }
+
+    function calcularTierOro(promedio){
+      if (promedio < 120) {
+        return 1604800;
+      } else if (promedio < 170) {
+        return 1798336;
+      } else if (promedio < 220) {
+        return 2233792;
+      } else if (promedio < 270) {
+        return 2729728;
+      } else {
+        return 3903040;
+      }
+    }
+
+    function calcularMontoNeto(montoBruto){
+      return Math.round(montoBruto * 0.83);
+    }
+
+    function calcularRetencion(sueldoBruto) {
+      let retencion = 0;
+      let alicuota = 0;
+
+      if (sueldoBruto <= 2300000) {
+        retencion = 0;
+        alicuota = 0;
+      } else if (sueldoBruto <= 2654060) {
+        retencion = (sueldoBruto - 2300000) * 0.05;
+        alicuota = 5;
+      } else if (sueldoBruto <= 3000000) {
+        retencion = 17631 + (sueldoBruto - 2654060) * 0.12;
+        alicuota = 12;
+      } else if (sueldoBruto <= 3005029) {
+        retencion = 32588 + (sueldoBruto - 3000000) * 0.19;
+        alicuota = 19;
+      } else if (sueldoBruto <= 3500000) {
+        retencion = 80196 + (sueldoBruto - 3005029) * 0.19;
+        alicuota = 19;
+      } else if (sueldoBruto <= 3750000) {
+        retencion = 184668 + (sueldoBruto - 3500000) * 0.23;
+        alicuota = 23;
+      } else if (sueldoBruto <= 4000000) {
+        retencion = 246960 + (sueldoBruto - 3750000) * 0.23;
+        alicuota = 23;
+      } else if (sueldoBruto <= 4500000) {
+        retencion = 310703 + (sueldoBruto - 4000000) * 0.27;
+        alicuota = 27;
+      } else if (sueldoBruto <= 5000000) {
+        retencion = 456953 + (sueldoBruto - 4500000) * 0.27;
+        alicuota = 27;
+      } else if (sueldoBruto <= 5500000) {
+        retencion = 613779 + (sueldoBruto - 5000000) * 0.31;
+        alicuota = 31;
+      } else if (sueldoBruto <= 6000000) {
+        retencion = 781696 + (sueldoBruto - 5500000) * 0.31;
+        alicuota = 31;
+      } else if (sueldoBruto <= 6500000) {
+        retencion = 952209 + (sueldoBruto - 6000000) * 0.35;
+        alicuota = 35;
+      } else {
+        retencion = 1141793 + (sueldoBruto - 6500000) * 0.35;
+        alicuota = 35;
+      }
+
+      return { retencion, alicuota };
+    }
+
+    function calcularSueldoNeto(sueldoBruto) {
+      let retencionGanancias = calcularRetencion(sueldoBruto).retencion;
+      let sueldoNetoAntesIG = sueldoBruto - retencionGanancias;
+      let retencionIG = sueldoNetoAntesIG * 0.17;
+      let sueldoNeto = sueldoNetoAntesIG - retencionIG;
+
+      return {
+        retencionGanancias,
+        sueldoNetoAntesIG,
+        retencionIG,
+        sueldoNeto
+      };
+    }
+  </script>
+</body>
+</html>
