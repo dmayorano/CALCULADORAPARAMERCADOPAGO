@@ -250,66 +250,70 @@ function calcular(){
     }
 
     function calcularMonto(cartera1, cartera2, cartera3, promedio){
-      if (cartera1 < 100 || cartera2 < 100 || cartera3 < 100) {
-        return 1000000;
-      } else {
-        if (promedio >= 80 && promedio < 125) {
-          return calcularTierBronce(promedio);
-        } else if (promedio >= 125 && promedio <= 200) {
-          return calcularTierPlata(promedio);
-        } else if (promedio > 200) {
-          return calcularTierOro(promedio);
-        }
-      }
-    }
+  let tier = determinarTier(promedio);
+  let ultimaCartera = cartera3;
 
-    function calcularTierBronce(promedio){
-      if (promedio < 80) {
-        return 1000000;
-      } else if (promedio < 90) {
-        return 1134400;
-      } else if (promedio < 100) {
-        return 1264000;
-      } else if (promedio < 120) {
-        return 1420000;
-      } else if (promedio < 170) {
-        return 1554400;
-      } else if (promedio < 220) {
-        return 1856800;
-      } else if (promedio < 270) {
-        return 2201200;
-      } else {
-        return 3016000;
-      }
+  if (ultimaCartera < 100) {
+    return 1000000; // Tier Bronce
+  } else {
+    switch (tier) {
+      case "Bronce":
+        return calcularTierBronce(ultimaCartera);
+      case "Plata":
+        return calcularTierPlata(ultimaCartera);
+      case "Oro":
+        return calcularTierOro(ultimaCartera);
+      default:
+        return 1000000; // Tier Bronce por defecto
     }
+  }
+}
 
-    function calcularTierPlata(promedio){
-      if (promedio < 120) {
-        return 1520400;
-      } else if (promedio < 170) {
-        return 1665280;
-      } else if (promedio < 220) {
-        return 2028160;
-      } else if (promedio < 270) {
-        return 2441440;
-      } else {
-        return 3419200;
-      }
-    }
+function calcularTierBronce(cartera) {
+  if (cartera < 90) {
+    return 1000000;
+  } else if (cartera < 100) {
+    return 1264000;
+  } else if (cartera < 120) {
+    return 1420000;
+  } else if (cartera < 170) {
+    return 1554400;
+  } else if (cartera < 220) {
+    return 1856800;
+  } else if (cartera < 270) {
+    return 2201200;
+  } else {
+    return 3016000;
+  }
+}
 
-    function calcularTierOro(promedio){
-      if (promedio < 120) {
-        return 1604800;
-      } else if (promedio < 170) {
-        return 1798336;
-      } else if (promedio < 220) {
-        return 2233792;
-      } else if (promedio < 270) {
-        return 2729728;
-      } else {
-        return 3903040;
-      }
-    }
+function calcularTierPlata(cartera) {
+  if (cartera < 120) {
+    return 1520400;
+  } else if (cartera < 170) {
+    return 1665280;
+  } else if (cartera < 220) {
+    return 2028160;
+  } else if (cartera < 270) {
+    return 2441440;
+  } else {
+    return 3419200;
+  }
+}
+
+function calcularTierOro(cartera) {
+  if (cartera < 120) {
+    return 1604800;
+  } else if (cartera < 170) {
+    return 1798336;
+  } else if (cartera < 220) {
+    return 2233792;
+  } else if (cartera < 270) {
+    return 2729728;
+  } else {
+    return 3903040;
+  }
+}
 
     function calcularMontoNeto(montoBruto){
       return Math.round(montoBruto * 0.83);
