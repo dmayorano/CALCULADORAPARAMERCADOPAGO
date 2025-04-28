@@ -113,9 +113,9 @@
           
           🔸Monto a cobrar bruto.
           
-          🔸Monto a cobrar neto(descontando IIBB, aportes y adelantos solicitados).
+          🔸Monto a cobrar neto(descontando ganancias, aportes y adelantos solicitados).
           
-          🔸Tambien te brindara el porcentaje de IIBB y de aportes que se retuvo ..</p>
+          🔸Tambien te brindara el porcentaje de ganancias y de aportes que se retuvo ..</p>
       </div>
     </div>
   </div>
@@ -224,8 +224,8 @@ function calcular(){
   document.getElementById("montoBrutoModalBody").innerHTML = "El monto a cobrar bruto es: $" + montoBruto.toLocaleString("es-AR");
   document.getElementById("montoNetoModalBody").innerHTML = `
     El monto a cobrar neto es: $${resultadoSueldoNeto.sueldoNeto.toLocaleString("es-AR")}
-    Retención de IIBB: $${resultadoSueldoNeto.retencionGanancias.toLocaleString("es-AR")} (${((resultadoSueldoNeto.retencionGanancias / montoBruto) * 100).toFixed(2)}%)
-    Retención de cargas sociales: $${resultadoSueldoNeto.retencionIG.toLocaleString("es-AR")} (17%)
+    Retención de Ganancias: $${resultadoSueldoNeto.retencionGanancias.toLocaleString("es-AR")} (${((resultadoSueldoNeto.retencionGanancias / montoBruto) * 100).toFixed(2)}%)
+    Aportes: $${resultadoSueldoNeto.retencionIG.toLocaleString("es-AR")} (17%)
     Adelanto: $${montoAdelanto.toLocaleString("es-AR")}
     Monto neto final: $${montoNetoFinal.toLocaleString("es-AR")}
   `;
