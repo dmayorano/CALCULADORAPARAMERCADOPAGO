@@ -8,21 +8,26 @@
   <style>
     body {
       background-color: #ffffff;
-      min-height: 100vh; 
-      margin: 0;
-      padding: 0; 
-      
     }
 
-    footer {
-      position: relative; 
-      bottom: 0; 
-      width: 100%;   
-}
-  
-    
+    .calculadora {
+      position: relative;
+      top: 100vh;
+      transition: top 1s;
+    }
+
+    .calculadora.animate {
+      animation: slide-up 1s forwards;
+    }
+
+    @keyframes slide-up {
+      to {
+        top: 0;
+      }
+    }
+
     .modal {
-      transition: all 0.s ease-in-out;
+      transition: all 0s ease-in-out;
       transform: scale(0.8);
       opacity: 0;
       display: none;
@@ -35,6 +40,7 @@
     }
   </style>
 </head>
+
 <body>
   <div class="modal fade" id="resultadoModal" tabindex="-1" aria-labelledby="resultadoModalLabel" aria-hidden="true">
     <div class="modal-dialog">
@@ -71,7 +77,7 @@
             <a class="nav-link active" aria-current="page" href="#">Calculadora</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="#como-funciona">¿Como funciona?</a>
+            <a class="nav-link" href="#como-funciona">¿Cómo funciona?</a>
           </li>
           <li class="nav-item">
             <a class="nav-link" href="#contacto">Contacto</a>
@@ -81,8 +87,7 @@
       </div>
     </div>
   </nav>
-
-  <h2 type="title" class="calm-landings-library-section-title__title text-center mt-5 mb-5" style="color:#000" id="como-funciona">¿Como funciona?</h2>
+  <h2 type="title" class="calm-landings-library-section-title__title text-center mt-5 mb-5" style="color:#000" id="como-funciona">¿Cómo funciona?</h2>
 <div class="row">
   <div class="col-lg-4 col-md-4 col-sm-12 mb-4">
     <div class="card h-100 border rounded-3" style="background-color:#0A0080">
@@ -92,11 +97,8 @@
           
           </svg>
         </div>
-        <h5 class="card-title text-white text-center">Paso 1: Ingresa uno a uno el porcentaje(%) de tus 3 carteras y si es que solicitaste un adelanto.</h5>
-        
-        <p class="card-text text-white text-center"> Tu ultima cartera es el porcentaje que vas a cobrar, pero con el promedio va a ubicarte en el TIER correspondiente.
-           
-          </p>
+        <h5 class="card-title text-white text-center">Paso 1: Ingresa uno a uno el porcentaje (%) de tus 3 carteras y, si corresponde, el monto del adelanto solicitado. </h5>
+        <p class="card-text text-white text-center">Ten en cuenta que la última cartera ingresada será el porcentaje que se utilizará para calcular tu comisión, y según el promedio de las carteras, se determinará el TIER correspondiente.</p>
       </div>
     </div>
   </div>
@@ -108,14 +110,12 @@
             <!-- Icono SVG -->
           </svg>
         </div>
-        <h5 class="card-title text-white text-center">Paso 2: Aprieta: Calcular!</h5>
-        <p class="card-text text-white text-center"> La calculadora te proporcionará un desglose detallado de tus ingresos, incluyendo:
-          
-          🔸Monto a cobrar bruto.
-          
-          🔸Monto a cobrar neto(descontando ganancias, aportes y adelantos solicitados).
-          
-          🔸Tambien te brindara el porcentaje de ganancias y de aportes que se retuvo..</p>
+        <h5 class="card-title text-white text-center">Paso 2: Haz clic en 'Calcular'. </h5>
+        <p class="card-text text-white text-center">La calculadora te proporcionará un desglose detallado de tus ingresos, que incluye:
+          - Monto a cobrar bruto.
+          - Cual es tu Tier.
+          - Monto a cobrar neto (descontando ganancias, aportes y adelantos solicitados).
+          - También te brindará el porcentaje de ganancias y de aportes que se retuvo."</p>
       </div>
     </div>
   </div>
@@ -123,45 +123,45 @@
     <div class="card h-100 border rounded-3" style="background-color:#0A0080">
       <div class="card-body d-flex flex-column align-items-center">
         <div aria-hidden="true" class="mb-3" style="height: 48px;"></div>
-        <h5 class="card-title text-white text-center">Paso 3: Disfruta la facilidad de tener un control mas detallado de tu sueldo sin sorpresas</h5>
-        <p class="card-text text-white text-center">Extra: Si necesitas la cotizacion del dolar oficial, se actualiza en el momento.</p>
+        <h5 class="card-title text-white text-center">Paso 3:</h5>
+        <p class="card-text text-white text-center">Disfruta la facilidad de tener un control más detallado de tu sueldo sin sorpresas.
+          Extra: Si necesitas la cotización del dólar oficial, esta se actualiza en tiempo real.</p>
       </div>
     </div>
   </div>
 </div>
   </div>
   
-  <div class="container border rounded p-4 shadow-sm mt-5 position-relative" style="min-height: 400px; background-color: #00ccff">
+  <div class="calculadora border rounded p-4 shadow-sm mt-5 position-relative" style="min-height: 400px; background-color: #1e99b8">
     <div class="row">
       <div class="col-lg-6">
-        <h2 type="title" class="calm-landings-library-section-title__title text-center mb-4" style="color:#fff">¿Pero... Cuanto voy a cobrar?</h2>
+        <h2 type="title" class="calm-landings-library-section-title__title text-center mb-4" style="color:#fff">¿Pero... cuánto voy a cobrar?</h2>
         <form id="formulario" class="row g-3 p-2 mt-2" style="width: 100%; margin: 0 auto;">
           <div class="col-md-4 p-2 flex-fill text-center">
-            <label for="cartera1" class="form-label fw-bold" style="color: #fff;"> (%) Cartera 1: </label>
+            <label for="cartera1" class="form-label fw-bold" style="color: #fff;">Cartera 1</label>
             <input type="number" class="form-control text-center" id="cartera1" value="" required>
           </div>
           <div class="col-md-4 p-2 flex-fill text-center">
-            <label for="cartera2" class="form-label fw-bold" style="color: #fff;"> (%) Cartera 2: </label>
+            <label for="cartera2" class="form-label fw-bold" style="color: #fff;">Cartera 2</label>
             <input type="number" class="form-control text-center" id="cartera2" value="" required>
           </div>
           <div class="col-md-4 p-2 flex-fill text-center">
-            <label for="cartera3" class="form-label fw-bold" style="color: #fff;"> (%) Cartera 3: </label>
+            <label for="cartera3" class="form-label fw-bold" style="color: #fff;">Cartera 3</label>
             <input type="number" class="form-control text-center" id="cartera3" value="" required>
           </div>
           <div class="col-md-4 p-2 flex-fill text-center">
-            <label for="adelanto" class="form-label fw-bold" style="color: #fff;">¿Adelanto? </label>
+            <label for="adelanto" class="form-label fw-bold" style="color: #fff;">Adelanto</label>
             <input type="number" class="form-control text-center" id="adelanto" value="0" required>
           </div>
           <div class="col-12 text-center">
-            <button type="button" class="btn btn-primary" onclick="calcular()"> Calcular!</button>
+            <button type="button" class="btn btn-primary" onclick="calcular()">Calcular</button>
           </div>
         </form>
       </div>
       <div class="col-lg-6">
         <h2 type="title" class="calm-landings-library-section-title__title text-center mb-4" style="color:#fff">Cotización en vivo</h2>
-        <div class="d-flex justify-content-center"><a href="https://dolarhoy.com/i/cotizaciones/dolar-bancos-y-casas-de-cambio" target="_blank">
-  <iframe style="width:80%;height:250px;border-radius:30px;box-shadow:5px 10px 4px rgb(0 0 0 / 355%);border:1px solid #bcbcbc" src="https://dolarhoy.com/i/cotizaciones/dolar-bancos-y-casas-de-cambio" frameborder="0"></iframe>
-            </a> 
+        <div class="d-flex justify-content-center">
+          <iframe style="width:80%;height:250px;border-radius:30px;box-shadow:5px 10px 4px rgb(0 0 0 / 355%);border:1px solid #bcbcbc" src="https://dolarhoy.com/i/cotizaciones/dolar-bancos-y-casas-de-cambio" frameborder="0"></iframe>
         </div>
       </div>
     </div>
@@ -186,6 +186,7 @@
       </div>
     </div>
   </div>
+
   <footer class="bg-dark text-white mt-5 p-4" id="contacto">
     <div class="d-flex justify-content-center align-items-center">
       <p class="me-3">&copy; Damian Mayorano</p>
@@ -194,16 +195,19 @@
       <p class="me-3">LinkedIn: <a href="https://www.linkedin.com/in/damian-mayorano-45004219b/" class="text-white">Mi Perfil</a></p>
     </div>
   </footer>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/js/bootstrap.bundle.min.js" integrity="sha384-HwwvtgBNo3bZJJLYd8z8O7zpdJ1a6vzcg8Z624ogAKA9eKE4yQM6Af3zH/AbebHa" crossorigin="anonymous"></script>
-<script>
-  document.addEventListener('DOMContentLoaded', function() {
-    const navbarToggler = document.querySelector('.navbar-toggler');
-    const navbarCollapse = document.querySelector('.navbar-collapse');
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/js/bootstrap.bundle.min.js" integrity="sha384-HwwvtgBNo3bZJJLYd8z8O7zpdJ1a6vzcg8Z624ogAKA9eKE4yQM6Af3zH/AbebHa" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/js/bootstrap.bundle.min.js" integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBNt8Ev/8AutEk+9/d39XXFA9ArgA6D1P/yiqUrQ=" crossorigin="anonymous"></script>
+  <script>
+const calculadora = document.querySelector('.calculadora');
 
-    navbarToggler.addEventListener('click', function() {
-      navbarCollapse.classList.toggle('show');
-    });
-  });
+window.addEventListener('scroll', () => {
+  const scrollPosition = window.scrollY;
+  const triggerPoint = 100; // ajusta este valor según sea necesario
+
+  if (scrollPosition > triggerPoint) {
+    calculadora.classList.add('animate');
+  }
+});
 function calcular(){
   console.log("Calculando...");
   let cartera1 = parseFloat(document.getElementById("cartera1").value);
@@ -229,12 +233,12 @@ function calcular(){
   document.getElementById("tierModalBody").innerHTML = "Tier: " + tier;
   document.getElementById("montoBrutoModalBody").innerHTML = "El monto a cobrar bruto es: $" + montoBruto.toLocaleString("es-AR");
   document.getElementById("montoNetoModalBody").innerHTML = `
-    El monto a cobrar neto es: $${resultadoSueldoNeto.sueldoNeto.toLocaleString("es-AR")}
-    Retención de Ganancias: $${resultadoSueldoNeto.retencionGanancias.toLocaleString("es-AR")} (${((resultadoSueldoNeto.retencionGanancias / montoBruto) * 100).toFixed(2)}%)
-    Retención de cargas sociales: $${resultadoSueldoNeto.retencionIG.toLocaleString("es-AR")} (17%)
-    Adelanto: $${montoAdelanto.toLocaleString("es-AR")}
-    Monto neto final: $${montoNetoFinal.toLocaleString("es-AR")}
-  `;
+  - El monto a cobrar neto es: $${resultadoSueldoNeto.sueldoNeto.toLocaleString("es-AR")}
+  - Retención de ganancias: $${resultadoSueldoNeto.retencionGanancias.toLocaleString("es-AR")} (${calcularRetencion(montoBruto).alicuota}%)
+  - Aportes: $${resultadoSueldoNeto.retencionIG.toLocaleString("es-AR")} (17%)
+  - Adelanto: $${montoAdelanto.toLocaleString("es-AR")}
+  - Monto neto final: <b>$${montoNetoFinal.toLocaleString("es-AR")}</b>
+`;
   var modal = document.getElementById('resultadoModal');
       modal.classList.add('show');
       document.body.classList.add('modal-open');
@@ -322,7 +326,6 @@ function calcularTierOro(cartera) {
     return 3903040;
   }
 }
-
 
     function calcularMontoNeto(montoBruto){
       return Math.round(montoBruto * 0.83);
