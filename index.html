@@ -380,18 +380,18 @@ function calcularTierOro(cartera) {
     }
 
     function calcularSueldoNeto(sueldoBruto) {
-      let retencionGanancias = calcularRetencion(sueldoBruto).retencion;
-      let sueldoNetoAntesIG = sueldoBruto - retencionGanancias;
-      let retencionIG = sueldoNetoAntesIG * 0.17;
-      let sueldoNeto = sueldoNetoAntesIG - retencionIG;
+  let retencionIG = sueldoBruto * 0.17;
+  let sueldoNetoAntesGanancias = sueldoBruto - retencionIG;
+  let retencionGanancias = calcularRetencion(sueldoNetoAntesGanancias).retencion;
+  let sueldoNeto = sueldoNetoAntesGanancias - retencionGanancias;
 
-      return {
-        retencionGanancias,
-        sueldoNetoAntesIG,
-        retencionIG,
-        sueldoNeto
-      };
-    }
+  return {
+    retencionGanancias,
+    retencionIG,
+    sueldoNeto
+  };
+}
+
   </script>
 </body>
 </html>
