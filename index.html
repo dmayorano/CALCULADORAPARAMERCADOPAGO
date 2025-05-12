@@ -470,11 +470,10 @@ function calcularRetencion(sueldoBruto) {
 
   return { retencion, alicuota };
 }
-
-    function calcularSueldoNeto(sueldoBruto) {
+function calcularSueldoNeto(sueldoBruto) {
   let retencionIG = sueldoBruto * 0.17;
+  let retencionGanancias = calcularRetencion(sueldoBruto).retencion;
   let sueldoNetoAntesGanancias = sueldoBruto - retencionIG;
-  let retencionGanancias = calcularRetencion(sueldoNetoAntesGanancias).retencion;
   let sueldoNeto = sueldoNetoAntesGanancias - retencionGanancias;
 
   return {
