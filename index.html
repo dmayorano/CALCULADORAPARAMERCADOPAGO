@@ -359,11 +359,14 @@ function calcular(){
     }
   }
 }
+    
 function calcularTierBronce(cartera) {
-  if (cartera < 90) {
+  if (cartera < 80) {
     return 1000000;
+  } else if (cartera < 90) {
+    return 1134400;
   } else if (cartera < 100) {
-    return 1264000;
+    return 1264600;
   } else if (cartera < 120) {
     return 1420000;
   } else if (cartera < 170) {
@@ -372,38 +375,49 @@ function calcularTierBronce(cartera) {
     return 1856800;
   } else if (cartera < 270) {
     return 2201200;
+  } else if (cartera < 320) {
+    return 2587600;
   } else {
     return 3016000;
   }
 }
 
 function calcularTierPlata(cartera) {
-  if (cartera < 120) {
-    return 1520400;
+  if (cartera < 100) {
+    return 1504000;
+  } else if (cartera < 120) {
+    return 1504000; // no hay valor para 100-119, asumiendo 100%
   } else if (cartera < 170) {
     return 1665280;
   } else if (cartera < 220) {
     return 2028160;
   } else if (cartera < 270) {
     return 2441440;
+  } else if (cartera < 320) {
+    return 2905120;
   } else {
     return 3419200;
   }
 }
 
 function calcularTierOro(cartera) {
-  if (cartera < 120) {
+  if (cartera < 100) {
     return 1604800;
+  } else if (cartera < 120) {
+    return 1604800; // no hay valor para 100-119, asumiendo 100%
   } else if (cartera < 170) {
     return 1798336;
   } else if (cartera < 220) {
     return 2233792;
   } else if (cartera < 270) {
     return 2729728;
+  } else if (cartera < 320) {
+    return 3286144;
   } else {
     return 3903040;
   }
 }
+
 
     function calcularMontoNeto(montoBruto){
       return Math.round(montoBruto * 0.83);
